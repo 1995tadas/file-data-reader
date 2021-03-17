@@ -1,5 +1,7 @@
 ## Steps to run
 
+Rename 'env.example.php' to 'env.php''
+
 Run this command from terminal with you file path
 
 ```
