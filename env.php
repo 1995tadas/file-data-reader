@@ -2,7 +2,7 @@
 
 $variables = [
     'SUPPORTED_FILES' => ['csv', 'json', 'xml'],
-    'APP_DEBUG' => true
+    'APP_DEBUG' => false
 ];
 
 foreach ($variables as $key => $value) {
