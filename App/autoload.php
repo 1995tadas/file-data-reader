@@ -1,6 +1,6 @@
 <?php
 
-$files = ['env.php', 'helpers.php'];
+$files = ['env.php', 'app\helpers.php'];
 foreach ($files as $file) {
     require_once $file;
 }
