@@ -21,8 +21,8 @@ class ParseFile
      */
     public function __construct($path)
     {
-        if (file_exists($path) === false) {
-            throw new \Exception(sprintf('The file "%s" does not exist', $path));
+        if (!file_exists($path) || !filesize($path)) {
+            throw new \Exception(sprintf('The file "%s" does not exist or is empty', $path));
         }
 
         $pathInfo = pathinfo($path);
@@ -56,11 +56,17 @@ class ParseFile
      *
      * @param string $path
      * @return array
+     * @throws \Exception
      */
     private function json(string $path): array
     {
         $fileContent = file_get_contents($path);
-        return json_decode($fileContent, true);
+        $json = json_decode($fileContent, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \Exception(sprintf('The Json "%s" file not valid', $path));
+        }
+
+        return $json;
     }
 
     /**
