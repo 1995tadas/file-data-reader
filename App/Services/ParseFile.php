@@ -95,9 +95,9 @@ class ParseFile
     /**
      * Csv file parsing
      *
-     * Firstly csv reads files and turns every row to arrays in array;
-     * Header are separated into variable and removed from array;
-     * Then header will be combined with csv array content and set a keys
+     * First line will read csv file and turn every row to arrays in array;
+     * Header will be separated into variable and removed from array;
+     * Then header array will be combined with csv array content and set as keys
      * if array row have the same amount of elements as header
      *
      * @param string $path
