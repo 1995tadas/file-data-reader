@@ -1,8 +1,8 @@
 ## Steps to run
 
-Rename 'env.example.php' to 'env.php''
+1. Rename 'env.example.php' to 'env.php''
 
-Run this command from terminal with you file path
+1. Run this command from terminal with your file path
 
 ```
 $ php index.php path_until_our_file.csv|xml|json

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace App\Services;
 
 class ParseFile
 {
@@ -16,6 +16,7 @@ class ParseFile
 
     /**
      * ParseFile constructor and validator.
+     *
      * @param $path
      * @throws \Exception
      */
@@ -52,7 +53,11 @@ class ParseFile
     }
 
     /**
-     * json file parsing
+     * Json file parsing
+     *
+     * Firstly file content will be red
+     * then json will be decoded into associative array
+     * if there is errors present - exception will be thrown
      *
      * @param string $path
      * @return array
@@ -72,17 +77,28 @@ class ParseFile
     /**
      * xml file parsing
      *
+     * Firstly file content will be red
+     * then xml will be decoded into object;
+     * For purpose of creating associative array xmlObject
+     * will be casted to array then json encoded back and forth
+     *
      * @param string $path
      * @return array
      */
     private function xml(string $path): array
     {
         $fileContent = file_get_contents($path);
-        return json_decode(json_encode((array)simplexml_load_string($fileContent)), true);
+        $xmlObject = simplexml_load_string($fileContent);
+        return json_decode(json_encode((array)$xmlObject), true);
     }
 
     /**
-     * csv file parsing
+     * Csv file parsing
+     *
+     * Firstly csv reads files and turns every row to arrays in array;
+     * Header are separated into variable and removed from array;
+     * Then header will be combined with csv array content and set a keys
+     * if array row have the same amount of elements as header
      *
      * @param string $path
      * @return array
@@ -90,14 +106,15 @@ class ParseFile
     private function csv(string $path): array
     {
         $fileContent = array_map('str_getcsv', file($path));
+
         $fileHeader = $fileContent[0];
+        array_shift($fileContent);
 
         array_walk($fileContent, function (&$fileLine) use ($fileHeader) {
             if (count($fileHeader) === count($fileLine)) {
                 $fileLine = array_combine($fileHeader, $fileLine);
             }
         });
-        array_shift($fileContent);
 
         return $fileContent;
     }

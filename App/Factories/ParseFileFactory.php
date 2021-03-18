@@ -1,8 +1,8 @@
 <?php
 
-namespace App\factory;
+namespace App\Factories;
 
-use App\Service\ParseFile;
+use App\Services\ParseFile;
 
 class ParseFileFactory
 {

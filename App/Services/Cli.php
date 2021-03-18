@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Service;
+namespace App\Services;
 
-use App\Factory\ParseFileFactory;
+use App\Factories\ParseFileFactory;
 
 class Cli
 {
@@ -25,11 +25,13 @@ class Cli
     }
 
     /**
-     * @return array
+     * Prints ParseFileFactory content to terminal
+     *
+     * @return void
      * @throws \Exception
      */
-    public function output(): array
+    public function output(): void
     {
-        return ParseFileFactory::create($this->arguments[0]);
+        print_r(ParseFileFactory::create($this->arguments[0]));
     }
 }

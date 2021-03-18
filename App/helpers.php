@@ -1,5 +1,8 @@
 <?php
 
+/*
+    Helper for reading env variable form env.php file
+*/
 if (!function_exists('env')) {
     function env($key, $default = null)
     {
