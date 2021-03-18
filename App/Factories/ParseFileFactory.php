@@ -13,7 +13,7 @@ class ParseFileFactory
      * @return array
      * @throws \Exception
      */
-    public static function create($path): array
+    public static function parse($path): array
     {
         $parseFile = new ParseFile($path);
         return $parseFile->parse();

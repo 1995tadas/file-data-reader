@@ -32,6 +32,6 @@ class Cli
      */
     public function output(): void
     {
-        print_r(ParseFileFactory::create($this->arguments[0]));
+        print_r(ParseFileFactory::parse($this->arguments[0]));
     }
 }
