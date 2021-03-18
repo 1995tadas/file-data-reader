@@ -12,3 +12,7 @@ Example
 ```
 $ php index.php C:\Users\1995t\Desktop\input.csv
 ```
+
+## Technologies used 
+
+PHP 7.4
