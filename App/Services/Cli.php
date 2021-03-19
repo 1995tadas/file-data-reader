@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
-use App\Factories\ParseFileFactory;
+use App\Factories\ParseFile\ParseFileFactory;
+use Exception;
+use InvalidArgumentException;
 
 class Cli
 {
@@ -16,7 +18,7 @@ class Cli
     public function setArguments(array $arguments)
     {
         if (count($arguments) < 2) {
-            throw new \InvalidArgumentException('You should pass at least one argument!');
+            throw new InvalidArgumentException('You should pass at least one argument!');
         }
 
         array_shift($arguments);
@@ -28,10 +30,11 @@ class Cli
      * Prints ParseFileFactory content to terminal
      *
      * @return void
-     * @throws \Exception
+     * @throws Exception
      */
     public function output(): void
     {
-        print_r(ParseFileFactory::parse($this->arguments[0]));
+        $parseFileFactory = new ParseFileFactory($this->arguments[0]);
+        print_r($parseFileFactory->parse());
     }
 }
